@@ -1,0 +1,24 @@
+<header class="d-flex justify-content-center py-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/users/books}">Книги</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/users/authors}">Авторы</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/users/categories}">Категории</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/users/publishers}">Издательства</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/users/my-requests}">Мои запросы</a>
+    </li>
+    <li class="nav-item">
+      <form action="/logout" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-outline-primary border rounded">Выйти</button>
+      </form>
+    </li>
+  </ul>
+</header>

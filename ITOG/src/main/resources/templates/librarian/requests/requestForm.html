@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Форма Запроса</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+
+  <div th:replace="librarian/header :: header"></div>
+
+  <h1 th:text="${#strings.isEmpty(request.id) ? 'Создание Запроса' : 'Редактирование Запроса'}"></h1>
+
+  <form th:action="@{/librarian/requests}" th:object="${request}" method="post">
+    <input type="hidden" th:if="${!#strings.isEmpty(request.id)}" th:field="*{id}" />
+
+    <div class="form-group">
+      <label for="user">Пользователь</label>
+      <select th:field="*{user.id}" class="form-control" id="user">
+        <option value="" disabled selected>Выберите пользователя</option>
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="book">Книга</label>
+      <select th:field="*{book}" class="form-control" id="book">
+        <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.title}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Статус</label>
+      <select th:field="*{status}" class="form-control" id="status">
+        <option value="" disabled selected>Выберите статус</option>
+        <option th:each="status : ${T(com.example.itog.model.RequestStatus).values()}"
+                th:value="${status}"
+                th:text="${status}"></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </form>
+</div>
+</body>
+</html>
